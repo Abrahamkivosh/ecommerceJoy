@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string("image")->nullable();
             $table->foreignIdFor(Category::class) ;
 
             $table->timestamps();
