@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SubCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,16 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(SubCategory::class);
             $table->string('name');
-            $table->string('Image')->nullable();
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
-
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->double('price')->nullable();
+            $table->string('weight')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('stock')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('products');
     }
 };
