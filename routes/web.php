@@ -18,6 +18,8 @@ use App\Http\Controllers\PageController;
 
 
 Route::get('/',[PageController::class, 'index' ])->name('client.index') ;
+Route::get('/categories',[PageController::class, 'categories' ])->name('client.categories') ;
+Route::get('/cart',[PageController::class, 'cart' ])->name('client.cart') ;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

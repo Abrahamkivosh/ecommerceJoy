@@ -11,4 +11,14 @@ class PageController extends Controller
         # code...
         return view('client.welcome') ;
     }
+    public function categories()
+    {
+        # code...
+        return view('client.Categories') ;
+    }
+    public function cart()
+    {
+        # code...
+        return view('client.cart') ;
+    }
 }
