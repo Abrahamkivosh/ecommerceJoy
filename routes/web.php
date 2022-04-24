@@ -14,11 +14,9 @@ use App\Http\Controllers\PageController;
 |
 */
 
- Route::get('/', function () {
-     return view('welcome');
- });
 
 
+Route::get('/',[PageController::class, 'index' ])->name('client.index') ;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
