@@ -14,8 +14,7 @@ use App\Http\Controllers\PageController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layouts.app');
-// });
-Route::get('/',[PageController::class,'index'])->name('furniture.home');
+ Route::get('/', function () {
+     return view('welcome');
+ });
 
