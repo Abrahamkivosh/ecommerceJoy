@@ -870,7 +870,6 @@ ul {
 .single-blog .tag {
     text-align: left;
     display: inline-block;
-    float: left;
     font-size: 13px;
     font-weight: 300;
     margin-right: 22px;
@@ -6508,7 +6507,7 @@ ul {
     height: 14px;
     z-index: 9;
     cursor: pointer;
-    -webkit-transition: all 0.25s linear;
+    transition: all 0.25s linear;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     color: #2a2a2a;
