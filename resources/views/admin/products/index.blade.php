@@ -32,17 +32,26 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>Category</th>
+                                    <th>Sub-Category</th>
                                     <th>Name</th>
                                     <th>Image</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($products as $product)
                                 <tr>
+                                    <td>{{$product->sub_category->category->name}}</td>
+                                    <td>{{$product->sub_category->name}}</td>
                                     <td>{{$product->name}}</td>
-                                    <td><img src="/storage/products/{{$product->image}}" height="50" width="25%"
+
+                                    <td><img src="/storage/products/{{$product->image}}" height="50" width="45%"
                                             alt="products"></td>
+                                    <td>{{$product->stock}}</td>
+                                    <td>{{$product->price}}</td>
                                     <td>
                                         <div class="row">
                                             <div class="mr-2">
@@ -70,8 +79,12 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>Category</th>
+                                    <th>Sub-Category</th>
                                     <th>Name</th>
                                     <th>Image</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>

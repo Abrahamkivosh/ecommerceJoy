@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,9 +17,9 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function sub_category(): BelongsTo
+    public function sub_category()
     {
-        return $this->belongsTo(User::class, 'sub_category_id', 'id');
+        return $this->belongsTo(SubCategory::class, 'sub_category_id', 'id');
     }
     /**
      * Get all of the reviews for the Product
