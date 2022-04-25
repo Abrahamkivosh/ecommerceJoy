@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\SubCategory;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -15,7 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('admin.products.index',compact('products'));
     }
 
     /**
@@ -25,7 +29,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $subcategories=SubCategory::all();
+        return view('admin.products.create',compact('categories','subcategories'));
     }
 
     /**
@@ -36,7 +42,28 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $data=$request->validated();
+        if (file_exists($request->file('image'))) {
+            // Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+
+
+            // Get extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // Create new filename
+            $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+
+            // Uplaod image
+
+            $path = $request->file('image')->storeAs('public/products', $filenameToStore);
+            $avatar  = $filenameToStore;
+           $data['image'] = $avatar ;
+        }
+
+        Product::create($data);
+        return back()->with('success','You have successfuly added a product');
     }
 
     /**
@@ -47,7 +74,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.products.show',compact('product'));
     }
 
     /**
@@ -58,7 +85,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $subcategories=SubCategory::all();
+        return view('admin.products.edit',compact('categories','subcategories','product'));
+
     }
 
     /**
@@ -70,7 +100,28 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $data=$request->validated();
+        if (file_exists($request->file('image'))) {
+            // Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+
+
+            // Get extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // Create new filename
+            $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+
+            // Uplaod image
+
+            $path = $request->file('image')->storeAs('public/products', $filenameToStore);
+            $avatar  = $filenameToStore;
+           $data['image'] = $avatar ;
+        }
+
+        $product->update($data);
+        return back()->with('success','You have successfuly updated the Product details');
     }
 
     /**
@@ -81,6 +132,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+
+        if($product){
+            return back()->with('success','You have successfully deleted the record');
+        }
+        else{
+            return back()->with('error','An error occured, please try again or contact the admin!');
+        }
+
+
     }
 }

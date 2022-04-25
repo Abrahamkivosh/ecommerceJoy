@@ -132,7 +132,7 @@ class CategoryController extends Controller
             return back()->with('success','You have successfully deleted the record');
         }
         else{
-            return back()->with('error','An error occured, please try again or contact the manager!');
+            return back()->with('error','An error occured, please try again or contact the admin!');
         }
     }
 }
