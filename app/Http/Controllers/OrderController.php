@@ -82,6 +82,13 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        if($order){
+            return back()->with('success','You have successfully deleted the record');
+        }
+        else{
+            return back()->with('error','An error occured, please try again or contact the admin!');
+        }
     }
 }

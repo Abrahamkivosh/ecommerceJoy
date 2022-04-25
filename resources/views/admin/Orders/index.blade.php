@@ -64,10 +64,13 @@
                                     <td>
                                         <div class="row">
                                             <div class="mr-2">
+                                                <a href="{{route('orders.show',$order->id)}}" class="btn btn-sm btn-outline-success" >View</a>
+                                            </div>
+                                            <div >
                                                 <a class="btn btn-sm btn-outline-info"
                                                     href="{{route('orders.edit',$order->id)}}">Edit</a>
                                             </div>
-                                            <div>
+                                            <div class="ml-2">
                                                 <form action="{{route('orders.destroy',$order->id)}}" method="post"
                                                     enctype="multipart/form-data">
                                                     @csrf
@@ -78,9 +81,7 @@
                                                         type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </form>
                                             </div>
-                                            <div class="ml-2">
-                                                <a href="{{route('orders.show',$order->id)}}" class="btn btn-sm btn-outline-success" >View</a>
-                                            </div>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -93,7 +94,7 @@
                                     <th>Order Phone</th>
                                     <th>Status</th>
                                     <th>Delivery Date</th>
-                                    <th>Action</th>>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -47,7 +47,7 @@
                                     <td>
                                         <div class="row">
                                             <div class="mr-2">
-                                                <a class="btn btn-sm btn-info"
+                                                <a class="btn btn-sm btn-outline-info"
                                                     href="{{route('categories.edit',$category->id)}}">Edit</a>
                                             </div>
                                             <div>
@@ -58,11 +58,11 @@
 
                                                     <button
                                                         onclick="return confirm('Are you sure you want to delete this record?');"
-                                                        type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                        type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </form>
                                             </div>
                                             <div class="ml-2">
-                                                <a href="{{route('categories.show',$category->id)}}" class="btn btn-sm btn-success" >View</a>
+                                                <a href="{{route('categories.show',$category->id)}}" class="btn btn-sm btn-outline-success" >View</a>
                                             </div>
                                         </div>
                                     </td>
