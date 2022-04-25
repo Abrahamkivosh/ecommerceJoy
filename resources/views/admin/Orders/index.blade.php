@@ -31,30 +31,40 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Sub-Category</th>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Stock</th>
-                                    <th>Price</th>
+                                    <th>Customer Name</th>
+                                    <th>Shipping Address</th>
+                                    <th>Order Phone</th>
+                                    <th>Status</th>
+                                    <th>Delivery Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{$order->sub_category->category->name}}</td>
-                                    <td>{{$order->sub_category->name}}</td>
-                                    <td>{{$order->name}}</td>
+                                    <td>{{$order->user->name}}</td>
+                                    <td>{{$order->shipping_address}}</td>
+                                    <td>{{$order->order_phone}}</td>
+                                    <td>
+                                        {{$order->status}}
 
-                                    <td><img src="/storage/orders/{{$order->image}}" height="50" width="45%"
-                                            alt="orders"></td>
-                                    <td>{{$order->stock}}</td>
-                                    <td>{{$order->price}}</td>
+                                        @if ($order->status =='pending')
+                                        <span class="badge badge-warning">Pending</span>
+                                        @elseif($order->status =='rejected')
+                                        <span class="badge badge-danger">Rejected</span>
+                                        @elseif ($order->status =='approved')
+                                        <span class="badge badge-success">Approved</span>
+                                        @elseif ($order->status =='delivered')
+                                        <span class="badge badge-info">Delivered</span>
+
+                                        @endif
+
+                                     </td>
+                                    <td>{{$order->delivery_date}}</td>
                                     <td>
                                         <div class="row">
                                             <div class="mr-2">
-                                                <a class="btn btn-sm btn-info"
+                                                <a class="btn btn-sm btn-outline-info"
                                                     href="{{route('orders.edit',$order->id)}}">Edit</a>
                                             </div>
                                             <div>
@@ -65,11 +75,11 @@
 
                                                     <button
                                                         onclick="return confirm('Are you sure you want to delete this record?');"
-                                                        type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                        type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </form>
                                             </div>
                                             <div class="ml-2">
-                                                <a href="{{route('orders.show',$order->id)}}" class="btn btn-sm btn-success" >View</a>
+                                                <a href="{{route('orders.show',$order->id)}}" class="btn btn-sm btn-outline-success" >View</a>
                                             </div>
                                         </div>
                                     </td>
@@ -78,13 +88,12 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Sub-Category</th>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Stock</th>
-                                    <th>Price</th>
-                                    <th>Action</th>
+                                    <th>Customer Name</th>
+                                    <th>Shipping Address</th>
+                                    <th>Order Phone</th>
+                                    <th>Status</th>
+                                    <th>Delivery Date</th>
+                                    <th>Action</th>>
                                 </tr>
                             </tfoot>
                         </table>
