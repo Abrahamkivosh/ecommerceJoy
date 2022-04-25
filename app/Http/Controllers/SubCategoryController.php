@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\SubCategory;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreSubCategoryRequest;
 use App\Http\Requests\UpdateSubCategoryRequest;
-use App\Models\SubCategory;
 
 class SubCategoryController extends Controller
 {
@@ -25,7 +27,7 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -36,7 +38,28 @@ class SubCategoryController extends Controller
      */
     public function store(StoreSubCategoryRequest $request)
     {
-        //
+        $data=$request->validated();
+        if (file_exists($request->file('image'))) {
+            // Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+
+
+            // Get extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // Create new filename
+            $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+
+            // Uplaod image
+
+            $path = $request->file('image')->storeAs('public/subcategories', $filenameToStore);
+            $avatar  = $filenameToStore;
+           $data['image'] = $avatar ;
+        }
+
+        SubCategory::create($data);
+        return back()->with('success','You have successfuly added a new Sub-category');
     }
 
     /**
@@ -47,7 +70,7 @@ class SubCategoryController extends Controller
      */
     public function show(SubCategory $subCategory)
     {
-        //
+        return view('admin.Subcategory.show',compact('subCategory'));
     }
 
     /**
@@ -58,7 +81,9 @@ class SubCategoryController extends Controller
      */
     public function edit(SubCategory $subCategory)
     {
-        //
+        $categories=Category::all();
+        return view('admin.Subcategory.edit',compact('subCategory','categories'));
+
     }
 
     /**
@@ -70,7 +95,28 @@ class SubCategoryController extends Controller
      */
     public function update(UpdateSubCategoryRequest $request, SubCategory $subCategory)
     {
-        //
+        $data=$request->validated();
+        if (file_exists($request->file('image'))) {
+            // Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+
+
+            // Get extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // Create new filename
+            $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+
+            // Uplaod image
+
+            $path = $request->file('image')->storeAs('public/subcategories', $filenameToStore);
+            $avatar  = $filenameToStore;
+           $data['image'] = $avatar ;
+        }
+
+        $subCategory->update($data);
+        return back()->with('success','You have successfuly updated the Sub-category');
     }
 
     /**
@@ -81,6 +127,13 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        //
+        $subCategory->delete();
+
+        if($subCategory){
+            return back()->with('success','You have successfully deleted the record');
+        }
+        else{
+            return back()->with('error','An error occured, please try again or contact the manager!');
+        }
     }
 }

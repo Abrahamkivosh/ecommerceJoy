@@ -13,7 +13,7 @@ class StoreSubCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,10 @@ class StoreSubCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+            return [
+                'category_id'=>['required'],
+                'name'=>['required','max:355'],
+                'image'=>['required']
         ];
     }
 }

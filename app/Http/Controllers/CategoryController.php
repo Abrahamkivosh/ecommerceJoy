@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -25,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -36,7 +38,28 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $data=$request->validated();
+        if (file_exists($request->file('image'))) {
+            // Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+
+
+            // Get extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // Create new filename
+            $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+
+            // Uplaod image
+
+            $path = $request->file('image')->storeAs('public/categories', $filenameToStore);
+            $avatar  = $filenameToStore;
+           $data['image'] = $avatar ;
+        }
+
+        Category::create($data);
+        return back()->with('success','You have successfuly added a new category');
     }
 
     /**
@@ -47,7 +70,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.categories.show',compact('category'));
     }
 
     /**
@@ -58,7 +81,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -70,7 +94,28 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $data=$request->validated();
+        if (file_exists($request->file('image'))) {
+            // Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+
+
+            // Get extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // Create new filename
+            $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+
+            // Uplaod image
+
+            $path = $request->file('image')->storeAs('public/categories', $filenameToStore);
+            $avatar  = $filenameToStore;
+           $data['image'] = $avatar ;
+        }
+
+        $category->update($data);
+        return back()->with('success','You have successfuly updated the category');
     }
 
     /**
@@ -81,6 +126,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        if($category){
+            return back()->with('success','You have successfully deleted the record');
+        }
+        else{
+            return back()->with('error','An error occured, please try again or contact the manager!');
+        }
     }
 }
