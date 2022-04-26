@@ -171,7 +171,7 @@
                                     <a href="javascript:void(0)" class="product-title">{{$product->name}}
                                         <span class="badge badge-warning float-right">{{$product->price}}</span></a>
                                     <span class="product-description">
-                                        Samsung 32" 1080p 60Hz LED Smart HDTV.
+                                        {{ Str::limit($product->description,50) }}
                                     </span>
                                 </div>
                             </li>

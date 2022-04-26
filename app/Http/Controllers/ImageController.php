@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateImageRequest;
+use Illuminate\Http\Request;
 use App\Models\Image;
 
 class ImageController extends Controller
@@ -15,7 +16,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -25,7 +26,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.Images.create');
     }
 
     /**
@@ -34,9 +35,26 @@ class ImageController extends Controller
      * @param  \App\Http\Requests\StoreImageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreImageRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'product_id'=>['required'],
+            'image' =>'required',
+            'image.*' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $image_get = $request->image;
+        foreach ($image_get as $image) {
+            $fileOriginalName = $image->getClientOriginalExtension();
+            $fileNewName = time() .'.'. $fileOriginalName;
+            $image->storeAs('images', $fileNewName, 'public'); //here images is folder, $fileNewName is files new name, public indicated public folder. that means folder this image in public/storage/images folder
+                Image::create([
+                'product_id' => $request['product_id'],
+                'image' => $fileNewName
+            ]);
+        }
+
+            return back()->with('success','You have successfuly added the product images');
     }
 
     /**
