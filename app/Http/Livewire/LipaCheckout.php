@@ -20,10 +20,10 @@ class LipaCheckout extends Component
     public function Lipa(){
 
 
-        if ( ! Auth::check() ) {
+        if ( !Auth::check() ) {
 
             Session::flash("error","Please Login or create new account") ;
-            return  ;
+            return back() ;
         }
 
 

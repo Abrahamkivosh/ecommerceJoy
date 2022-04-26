@@ -106,6 +106,7 @@
                             <tr>
                               <th style="width:50%">Total:</th>
                               <td>
+                                  {{$order->amount}}
                               </td>
                           </table>
                         </div>
