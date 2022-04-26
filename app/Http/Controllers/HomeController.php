@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $products = Product::latest()->paginate(5);
+        $orders = Order::latest()->paginate(7);
+        return view('admin.home',\compact('products','orders'));
     }
 
     public function users(){
