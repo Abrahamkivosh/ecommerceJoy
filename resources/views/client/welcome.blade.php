@@ -6,75 +6,34 @@
         <div class="row align-items-center">
             <div class="col-lg-12">
                 <div class="banner_slider owl-carousel">
+                    @foreach ($topProducts as $product)
                     <div class="single_banner_slider">
                         <div class="row">
                             <div class="col-lg-5 col-md-8">
                                 <div class="banner_text">
                                     <div class="banner_text_iner">
-                                        <h1>Wood & Cloth
-                                            Sofa</h1>
-                                        <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                            suspendisse ultrices gravida. Risus commodo viverra</p>
-                                        <a href="#" class="btn_2">buy now</a>
+                                        <h1>{{$product->name}}</h1>
+                                        <p>{{Str::limit($product->description , 50, '...') }}</p>
+                                        <form action="{{ route('client.cart.add') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $product->id }}" name="id">
+                                            <input type="hidden" value="{{ $product->name }}" name="name">
+                                            <input type="hidden" value="{{ $product->price }}" name="price">
+                                            <input type="hidden" value="{{ $product->image }}"  name="image">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <button  class=" btn_2 add_cart btn btn-success  ">Add To Cart</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="banner_img d-none d-lg-block">
-                                <img src="client/img/banner_img.png" alt="">
-                            </div>
-                        </div>
-                    </div><div class="single_banner_slider">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-8">
-                                <div class="banner_text">
-                                    <div class="banner_text_iner">
-                                        <h1>Cloth & Wood
-                                            Sofa</h1>
-                                        <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                            suspendisse ultrices gravida. Risus commodo viverra</p>
-                                        <a href="#" class="btn_2">buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="banner_img d-none d-lg-block">
-                                <img src="client/img/banner_img.png" alt="">
-                            </div>
-                        </div>
-                    </div><div class="single_banner_slider">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-8">
-                                <div class="banner_text">
-                                    <div class="banner_text_iner">
-                                        <h1>Wood & Cloth
-                                            Sofa</h1>
-                                        <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                            suspendisse ultrices gravida. Risus commodo viverra</p>
-                                        <a href="#" class="btn_2">buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="banner_img d-none d-lg-block">
-                                <img src="client/img/banner_img.png" alt="">
+                                <img width="400" height="200" src="{{ $product->image }}" alt="{{$product->name}}">
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="single_banner_slider">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-8">
-                                <div class="banner_text">
-                                    <div class="banner_text_iner">
-                                        <h1>Cloth $ Wood Sofa</h1>
-                                        <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                            suspendisse ultrices gravida. Risus commodo viverra</p>
-                                        <a href="#" class="btn_2">buy now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="banner_img d-none d-lg-block">
-                                <img src="client/img/banner_img.png" alt="">
-                            </div>
-                        </div>
-                    </div> -->
+
+                    @endforeach
+
                 </div>
                 <div class="slider-counter"></div>
             </div>
@@ -99,7 +58,9 @@
                 <div class="single_feature_post_text">
                     <p>Premium Quality</p>
                     <h3>{{ $category->name }}</h3>
-                    <a href="{{ route('client.categories.show',$category) }}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+
+                    <a href="client/categories?category={{  $category->id  }}"
+                     class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
                     <img src="{{ $category->image }}" alt="{{  $category->name  }}">
                 </div>
             </div>
@@ -116,23 +77,23 @@
 <!-- product_list start-->
 <section class="product_list section_padding">
     <div class="container">
-        @foreach ($subCategories as $subCategory)
+        @foreach ($subCategories->take(3) as $subCategory)
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="section_tittle text-center">
-                    <h2>{{ $subCategory->name }} <span>shop</span></h2>
+                    <h2 class="text text-capitalize">{{ $subCategory->name }} <span>shop</span></h2>
                 </div>
             </div>
         </div>
-        <div class="row ">
-            @foreach ($subCategory->products as $product)
-            <div class="col-md-4 " >
-                <div style="width: 300px ;" class="card m-1  ">
-                    <img class="card-img-top" height="200" width="100" src="client/img/product/product_1.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title text-center text-bold">{{ $product->name }}</h4>
-                        <h3 class="card-text text-center" >{{ $product->price }}</h3>
-                        <p> {{ Str::of($product->description)->limit(10) }} </p>
+
+        <div class="row align-items-center latest_product_inner">
+            @foreach ($subCategory->products->take(6) as $product)
+            <div class="col-lg-4 col-sm-6">
+                <div class="single_product_item">
+                    <img src="{{ $product->image }}" width="300" height="150" alt="">
+                    <div class="single_product_text">
+                        <h4 class="text text-center text-capitalize " >{{ $product->name }}</h4>
+                        <h3 class="text text-center" >Ksh {{ $product->price }}</h3>
                         <form action="{{ route('client.cart.add') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" value="{{ $product->id }}" name="id">
@@ -140,16 +101,22 @@
                             <input type="hidden" value="{{ $product->price }}" name="price">
                             <input type="hidden" value="{{ $product->image }}"  name="image">
                             <input type="hidden" value="1" name="quantity">
-                            <button class="px-4 py-2 text-white bg-success btn-block  rounded">Add To Cart</button>
+                            <button class="add_cart btn btn-success  ">Add To Cart</button>
                         </form>
 
                     </div>
                 </div>
-
             </div>
 
-                @endforeach
+            @endforeach
 
+            {{-- <div class="col-lg-12">
+                <div class="pageination">
+                    <nav aria-label="Page navigation example">
+                        {{ $products->withQueryString()->links() }}
+                    </nav>
+                </div>
+            </div> --}}
         </div>
 
 
