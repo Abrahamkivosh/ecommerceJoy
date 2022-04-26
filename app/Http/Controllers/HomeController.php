@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Review;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -29,9 +30,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $reviewsCount=Review::count();
+        $ordersCount=Order::count();
+        $usersCount=User::count();
         $products = Product::latest()->paginate(5);
         $orders = Order::latest()->paginate(7);
-        return view('admin.home',\compact('products','orders'));
+        $productsCount=Product::count();
+        return view('admin.home',\compact('products','orders','ordersCount','usersCount','productsCount','reviewsCount'));
     }
 
     public function users(){
