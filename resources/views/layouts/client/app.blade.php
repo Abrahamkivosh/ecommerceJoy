@@ -51,16 +51,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('client.index') }}">Home</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Shop
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 1</a>
-                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 2</a>
-                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 3</a>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('client.categories') }}">Categories</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
@@ -68,8 +60,8 @@
                                         Account
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> login</a>
-                                        <a class="dropdown-item" href="login.html"> Register</a>
+                                        <a class="dropdown-item" href="{{ route('login') }}"> login</a>
+                                        <a class="dropdown-item" href="{{ route('register') }}"> Register</a>
                                         <a class="dropdown-item" href="tracking.html">tracking</a>
                                         <a class="dropdown-item" href="confirmation.html">confirmation</a>
                                         <a class="dropdown-item" href="elements.html">Orders</a>
@@ -81,14 +73,14 @@
                                         Help
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.html"> Help Center</a>
-                                        <a class="dropdown-item" href="blog.html"> Order cancellation</a>
-                                        <a class="dropdown-item" href="blog.html"> Place & Track orders</a>
+                                        <a class="dropdown-item" href="#"> Help Center</a>
+                                        <a class="dropdown-item" href="#"> Order cancellation</a>
+                                        <a class="dropdown-item" href="#"> Place & Track orders</a>
                                     </div>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
+                                    <a class="nav-link" href="#">Contact</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -109,8 +101,15 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="single_product">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action ">Active item</a>
+                                            @forelse (Cart::getContent()->toArray() as $item)
+                                            <a href="#" class="list-group-item list-group-item-action ">{{ $item['name'] }}</a>
+                                            @empty
+                                                <span class="text text-primary text-center text-bold">
+                                                    Cart is Empty
+                                                </span>
+                                            @endforelse
 
+                                            <a  class="btn btn-success btn-block mt-2" href="{{ route('client.cart') }}"> View Cart </a>
                                         </div>
 
                                     </div>

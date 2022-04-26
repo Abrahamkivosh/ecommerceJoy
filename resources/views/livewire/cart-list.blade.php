@@ -1,6 +1,15 @@
 <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
+        @if ($message = Session::get('success'))
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong> {{ $message }} </strong>
+          </div>
+          @endif
+
         <div class="table-responsive">
           <table class="table">
             <thead>
@@ -34,13 +43,14 @@
                   </div>
                 </td>
                 <td>
-                  <h5>{{ \Cart::getSubTotal()  }}</h5>
+                  <h5>{{ $item['price'] *  $item['quantity']  }}</h5>
                 </td>
               </tr>
               @endforeach
               <tr class="bottom_button">
                 <td>
-                  <a class="btn_1" href="#">Update Cart</a>
+                  <a class="btn_1" wire:click="clearAllCart"  href="#">Empty Cart</a>
+
                 </td>
                 <td></td>
                 <td></td>
