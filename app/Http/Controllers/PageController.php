@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Nonstandard\Uuid;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Payment\Money as PaymentMoney;
 
 class PageController extends Controller
 {
@@ -45,7 +48,7 @@ class PageController extends Controller
     }
     public function addToCart(Request $request)
     {
-        \Cart::add([
+      $cart =  \Cart::add([
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
@@ -54,8 +57,28 @@ class PageController extends Controller
                 'image' => $request->image,
             )
         ]);
+        $request->session()->put('cart', \Cart::getContent()->toArray());
+
         session()->flash('success', 'Product is Added to Cart Successfully !');
 
         return redirect()->back();
+    }
+    public function checkout()
+    {
+        # code...
+        return view('client.checkout') ;
+    }
+    public function checkoutPay( Request $request , PaymentMoney $mpesa )
+    {
+       return  $mpesa->lipaNaMPesaOnlineAPI( "0707585566", "10") ;
+
+        $cartCollection = \Cart::getContent()->toArray();
+        $user = Auth::user() ;
+       return  $cartCollection ;
+
+        //  $orders =  $user->orders()->create($request->all()) ;
+        $items = \Cart::getContent();
+        //  $orders->order_details()->create() ;
+        return response( $items) ;
     }
 }
