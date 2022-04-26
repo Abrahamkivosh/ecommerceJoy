@@ -120,7 +120,7 @@
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>{{ $products->count() }} </span> Prodict Found</p>
+                                    <p><span>{{ $products->count() }} </span> Product Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>short by : </h5>
@@ -163,7 +163,7 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <a href="{{ route('client.product', $product) }}">
-                                <img src="{{ $product->image }}" alt="">
+                                <img src="/storage/products/{{$product->image}}" alt="">
                             </a>
                                 <div class="single_product_text">
                                     <h4>{{ $product->name }}</h4>
