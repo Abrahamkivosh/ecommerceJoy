@@ -16,15 +16,15 @@
     <ul class="navbar-nav ml-auto">
 
         <li class="nav-item dropdown u-pro">
-            {{-- <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                src={{ Str::contains(auth()->user()->image, 'http') ? auth()->user()->image : '/storage/user/' . auth()->user()->image }} alt="user" class="">
+            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img height="20" width="20%"   class="img-circle "   src={{ Str::contains(auth()->user()->image, 'http') ? auth()->user()->image : '/storage/user/' . auth()->user()->image }} alt="user" class="">
                 <span class="hidden-md-down">{{ Auth::user()->name }}
-                    &nbsp;<i class="fa fa-angle-down"></i></span> </a> --}}
+                    &nbsp;</span> </a>
             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                 <!-- text-->
-                {{-- <a href="{{route('user.edit',Auth::user()->id)}}" class="dropdown-item"><i class="ti-user"></i> My
-                    Profile</a> --}}
+                <a href="{{route('user.edit',Auth::user()->id)}}" class="dropdown-item"><i class="ti-user"></i> My
+                    Profile</a>
 
                 <!-- text-->
                 <div class="dropdown-divider"></div>
