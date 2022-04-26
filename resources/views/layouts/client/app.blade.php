@@ -30,8 +30,19 @@
   <link rel="stylesheet" href="{{ asset('client/css/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('client/css/price_rangs.css') }}">
   @livewireStyles
-</head>
+  <style>
+      #message{
+          z-index: 1000;
+          top: 40% ;
+          position: absolute ;
+          text-align: center ;
+          align-content: center;
 
+
+      }
+  </style>
+</head>
+@include('includes.messages')
 <body>
     <!--::header part start::-->
     <header class="main_menu home_menu">
@@ -286,6 +297,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{ asset('client/js/price_rangs.js') }}"></script>
     <!-- custom js -->
     <script src="{{ asset('client/js/custom.js') }}"></script>
+    <script>
+           $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    </script>
+    @stack('custom-scripts')
     @livewireScripts
 </body>
 

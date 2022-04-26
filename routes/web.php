@@ -24,6 +24,7 @@ use App\Http\Controllers\SubCategoryController;
 Route::get('/cart',[PageController::class, 'cart' ])->name('client.cart') ;
 Route::post('/cart',[PageController::class, 'addToCart' ])->name('client.cart.add') ;
 Route::get('/',[PageController::class, 'index' ])->name('client.index') ;
+Route::get('client/checkout',[PageController::class,'checkout'])->name('client.checkout') ;
 Route::get('/client/categories',[PageController::class, 'categories' ])->name('client.categories');
 Route::get('/client/categories/{category}',[PageController::class, 'showCategory' ])->name('client.categories.show');
 Auth::routes();
