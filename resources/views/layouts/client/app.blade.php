@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -16,7 +17,7 @@
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="{{ asset('client/css/all.css') }}">
     <!-- nice select CSS -->
-  <link rel="stylesheet" href="{{ asset('client/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{ asset('client/css/nice-select.css') }}">
     <!-- flaticon CSS -->
     <link rel="stylesheet" href="{{ asset('client/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/themify-icons.css') }}">
@@ -26,31 +27,33 @@
     <link rel="stylesheet" href="{{ asset('client/css/slick.css') }}">
     <!-- style CSS -->
     <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
-      <!-- swiper CSS -->
-  <link rel="stylesheet" href="{{ asset('client/css/slick.css') }}">
-  <link rel="stylesheet" href="{{ asset('client/css/price_rangs.css') }}">
-  @livewireStyles
-  <style>
-      #message{
-          z-index: 1000;
-          top: 40% ;
-          position: absolute ;
-          text-align: center ;
-          align-content: center;
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="{{ asset('client/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/css/price_rangs.css') }}">
+    @livewireStyles
+    <style>
+        #message {
+            z-index: 1000;
+            top: 40%;
+            position: absolute;
+            text-align: center;
+            align-content: center;
 
 
-      }
-  </style>
+        }
+
+    </style>
 </head>
 @include('includes.messages')
+
 <body>
     <!--::header part start::-->
     <header class="main_menu home_menu">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="client/img/logo.png" alt="logo"> </a>
+                    <nav class="navbar navbar-expand-lg text-white navbar-dark bg-dark">
+                        <a class="navbar-brand" href="index.html"> <img src="/admin/dist/img/odds.PNG" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -94,10 +97,10 @@
                                     <a class="nav-link" href="#">Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('register')}}">Register</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
                                 </li>
                             </ul>
                         </div>
@@ -107,20 +110,22 @@
                             <div class="dropdown ">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-cart-plus">   {{ Cart::getTotalQuantity()}} Cart  </i>
+                                    <i class="fas fa-cart-plus"> {{ Cart::getTotalQuantity() }} Cart </i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="single_product">
                                         <div class="list-group">
                                             @forelse (Cart::getContent()->toArray() as $item)
-                                            <a href="#" class="list-group-item list-group-item-action ">{{ $item['name'] }}</a>
+                                                <a href="#"
+                                                    class="list-group-item list-group-item-action ">{{ $item['name'] }}</a>
                                             @empty
                                                 <span class="text text-primary text-center text-bold">
                                                     Cart is Empty
                                                 </span>
                                             @endforelse
 
-                                            <a  class="btn btn-success btn-block mt-2" href="{{ route('client.cart') }}"> View Cart </a>
+                                            <a class="btn btn-success btn-block mt-2"
+                                                href="{{ route('client.cart') }}"> View Cart </a>
                                         </div>
 
                                     </div>
@@ -144,7 +149,7 @@
     </header>
     <!-- Header part end-->
 
-        @yield('content')
+    @yield('content')
 
     <!-- subscribe_area part start-->
     <section class="subscribe_area section_padding">
@@ -224,8 +229,7 @@
                 <div class="col-sm-6 col-lg-4">
                     <div class="single_footer_part">
                         <h4>Newsletter</h4>
-                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
-                        </p>
+
                         <div id="mc_embed_signup">
                             <form target="_blank"
                                 action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
@@ -248,9 +252,13 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="copyright_text">
-                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
+                            <P>
+
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved
+                            </P>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -298,12 +306,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- custom js -->
     <script src="{{ asset('client/js/custom.js') }}"></script>
     <script>
-           $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     </script>
     @stack('custom-scripts')
     @livewireScripts
