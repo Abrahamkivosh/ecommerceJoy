@@ -62,10 +62,6 @@
                                             <div class="mr-2">
                                                 <a href="{{route('orders.show',$order->id)}}" class="btn btn-sm btn-outline-success" >View</a>
                                             </div>
-                                            <div >
-                                                <a class="btn btn-sm btn-outline-info"
-                                                    href="{{route('orders.edit',$order->id)}}">Edit</a>
-                                            </div>
                                             <div class="ml-2">
                                                 <form action="{{route('orders.destroy',$order->id)}}" method="post"
                                                     enctype="multipart/form-data">
