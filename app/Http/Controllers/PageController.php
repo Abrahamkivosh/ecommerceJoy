@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Payment\Money as PaymentMoney;
+use App\Models\Review;
 
 class PageController extends Controller
 {
@@ -36,10 +37,10 @@ class PageController extends Controller
 
         return view('client.Categories',compact('categories','products'));
     }
-    public function showCategory(Category $category)
+    public function product(Product $product)
     {
         # code...
-        return $category ;
+        return view('client.single',compact(('product')));
     }
     public function cart()
     {
@@ -80,5 +81,25 @@ class PageController extends Controller
         $items = \Cart::getContent();
         //  $orders->order_details()->create() ;
         return response( $items) ;
+    }
+    public function reviewAdd( Request $request , Product $product )
+    {
+        # code...
+        if (!Auth::check()) {
+            # code...
+            $request->session()->flash('error', "Please login to give review");
+        }
+        $user = Auth::user() ;
+
+
+        $review =Review::create([
+            'product_id'=>$product->id ,
+            'rating'=> $request->rating ,
+            'review'=> $request->review ,
+            'user_id'=> $user->id
+        ]);
+
+            $request->session()->flash('success', "Review Added");
+            return back();
     }
 }

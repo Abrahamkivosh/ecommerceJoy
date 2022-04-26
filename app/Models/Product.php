@@ -28,9 +28,9 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function reviews(): HasMany
+    public function reviews()
     {
-        return $this->hasMany(Review::class, 'product_id', 'id');
+        return $this->hasMany(Review::class);
     }
     /**
      * Get all of the comments for the Product

@@ -162,7 +162,9 @@
                         @foreach ($products as $product)
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
+                                <a href="{{ route('client.product', $product) }}">
+                                <img src="{{ $product->image }}" alt="">
+                            </a>
                                 <div class="single_product_text">
                                     <h4>{{ $product->name }}</h4>
                                     <h3>{{ $product->price }}</h3>
