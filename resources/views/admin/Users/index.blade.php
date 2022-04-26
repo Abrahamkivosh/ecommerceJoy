@@ -51,7 +51,7 @@
                                     <td> @if ($user->is_admin == 1)
                                         Admin
                                         @else
-                                        Donor
+                                        Customer
                                         @endif </td>
                                     <td>
                                         <div class="row">
