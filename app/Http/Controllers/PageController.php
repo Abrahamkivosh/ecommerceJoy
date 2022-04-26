@@ -102,4 +102,9 @@ class PageController extends Controller
             $request->session()->flash('success', "Review Added");
             return back();
     }
+
+    // public function footerwor(){
+    //     $categories=Category::all();
+    //     return view('layouts.client.app',compact('categories'));
+    // }
 }
