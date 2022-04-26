@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="eng">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title') | Funitures</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="{{ asset('client/img/favicon.png') }}">
     <!-- Bootstrap CSS -->
@@ -30,6 +32,17 @@
       <!-- swiper CSS -->
   <link rel="stylesheet" href="{{ asset('client/css/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('client/css/price_rangs.css') }}">
+
+      <!-- Scripts -->
+      <script src="{{ asset('js/app.js') }}" defer></script>
+
+      <!-- Fonts -->
+      <link rel="dns-prefetch" href="//fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+      <!-- Styles -->
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -57,9 +70,9 @@
                                         Shop
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 1</a>
-                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 2</a>
-                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 3</a>
+                                        <a class="dropdown-item" href="">category 1</a>
+                                        <a class="dropdown-item" href="">category 2</a>
+                                        <a class="dropdown-item" href="">category 3</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
