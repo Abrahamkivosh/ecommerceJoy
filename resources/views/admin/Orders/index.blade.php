@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                 <tr>
-                                    <td>#</td>
+                                    <td>{{$order->user->name}}</td>
                                     <td>{{$order->shipping_address}}</td>
                                     <td>{{$order->order_phone}}</td>
                                     <td>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Image;
+use App\Models\OrderDetail;
 use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -40,4 +41,13 @@ class Product extends Model
     {
         return $this->hasMany(Image::class, 'product_id', 'id');
     }
+     /**
+     * Get all of the order_details for the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    // public function order_details(): HasMany
+    // {
+    //     return $this->hasMany(OrderDetail::class, 'order_id', 'id');
+    // }
 }
