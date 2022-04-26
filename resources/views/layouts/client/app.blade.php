@@ -90,6 +90,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="contact.html">Contact</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('register')}}">Register</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">

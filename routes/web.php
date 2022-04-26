@@ -34,3 +34,10 @@ Route::resource('categories', CategoryController::class);
 Route::resource('subCategories', SubCategoryController::class);
 Route::resource('products',ProductController::class);
 Route::resource('orders',OrderController::class);
+
+// users
+// edit user profile
+Route::get('/userEdit/{id}',[HomeController::class,'edit'])->name('user.edit');
+Route::put('/userUpdate/{id}',[HomeController::class,'update'])->name('user.update');
+Route::get('/users',[HomeController::class, 'users'])->name('user.index');
+Route::delete('user/{id}',[HomeController::class, 'destroy'])->name('user.delete');

@@ -42,12 +42,10 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{$order->user->name}}</td>
+                                    <td>#</td>
                                     <td>{{$order->shipping_address}}</td>
                                     <td>{{$order->order_phone}}</td>
                                     <td>
-                                        {{$order->status}}
-
                                         @if ($order->status =='pending')
                                         <span class="badge badge-warning">Pending</span>
                                         @elseif($order->status =='rejected')
@@ -56,9 +54,7 @@
                                         <span class="badge badge-success">Approved</span>
                                         @elseif ($order->status =='delivered')
                                         <span class="badge badge-info">Delivered</span>
-
                                         @endif
-
                                      </td>
                                     <td>{{$order->delivery_date}}</td>
                                     <td>

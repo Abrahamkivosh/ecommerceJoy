@@ -15,30 +15,31 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Brad Diesel
-                                <span class="float-right text-sm text-warning">Online</span>
-                            </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
+        <li class="nav-item dropdown u-pro">
+            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img height="20" width="20%"   class="img-circle "   src={{ Str::contains(auth()->user()->image, 'http') ? auth()->user()->image : '/storage/user/' . auth()->user()->image }} alt="user" class="">
+                <span class="hidden-md-down">{{ Auth::user()->name }}
+                    &nbsp;</span> </a>
+            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                <!-- text-->
+                <a href="{{route('user.edit',Auth::user()->id)}}" class="dropdown-item"><i class="ti-user"></i> My
+                    Profile</a>
+
+                <!-- text-->
                 <div class="dropdown-divider"></div>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item dropdown-footer btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
-        </li>
+</div>
+</li>
     </ul>
 </nav>
