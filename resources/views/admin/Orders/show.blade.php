@@ -114,22 +114,22 @@
 
                   <!-- accepted payments column -->
                   <div class="col-6 ">
-                    <p class="lead">Payment Methods:</p>
+                    <p class="lead">Actions:</p>
                     <div class="row">
                         <form action="">
-                            <button class="btn mr-2 btn-sm btn-outline-warning">Delete</button>
+                            <button class="btn mr-2 btn-sm btn-outline-dark">Pending</button>
                         </form>
                         <form action="">
-                            <button class="btn mr-2 btn-sm btn-outline-warning">Delete</button>
+                            <button class="btn mr-2 btn-sm btn-outline-info">Delivered</button>
                         </form>
                         <form action="">
-                            <button class="btn mr-2 btn-sm btn-outline-warning">Delete</button>
+                            <button class="btn mr-2 btn-sm btn-outline-warning">Reject</button>
                         </form>
                         <form action="">
-                            <button class="btn mr-2 btn-sm btn-outline-warning">Delete</button>
+                            <button class="btn mr-2 btn-sm btn-outline-success">Approved</button>
                         </form>
                         <form action="">
-                            <button class="btn mr-2 btn-sm btn-outline-warning">Delete</button>
+                            <button class="btn mr-2 btn-sm btn-outline-danger">Delete</button>
                         </form>
                     </div>
 
