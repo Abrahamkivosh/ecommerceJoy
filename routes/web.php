@@ -21,11 +21,10 @@ use App\Http\Controllers\SubCategoryController;
 |
 */
 
-
-
-Route::get('/',[PageController::class, 'index' ])->name('client.index') ;
-Route::get('/categories',[PageController::class, 'categories' ])->name('client.categories') ;
 Route::get('/cart',[PageController::class, 'cart' ])->name('client.cart') ;
+Route::get('/categories',[PageController::class, 'categories' ])->name('client.categories') ;
+Route::get('/',[PageController::class, 'index' ])->name('client.index') ;
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
