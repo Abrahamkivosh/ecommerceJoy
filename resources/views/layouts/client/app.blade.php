@@ -1,13 +1,10 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title') | Funitures</title>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="{{ asset('client/img/favicon.png') }}">
     <!-- Bootstrap CSS -->
@@ -32,17 +29,7 @@
       <!-- swiper CSS -->
   <link rel="stylesheet" href="{{ asset('client/css/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('client/css/price_rangs.css') }}">
-
-      <!-- Scripts -->
-      <script src="{{ asset('js/app.js') }}" defer></script>
-
-      <!-- Fonts -->
-      <link rel="dns-prefetch" href="//fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-      <!-- Styles -->
-      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+  @livewireStyles
 </head>
 
 <body>
@@ -70,9 +57,9 @@
                                         Shop
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="">category 1</a>
-                                        <a class="dropdown-item" href="">category 2</a>
-                                        <a class="dropdown-item" href="">category 3</a>
+                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 1</a>
+                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 2</a>
+                                        <a class="dropdown-item" href="{{ route('client.categories') }}">category 3</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -114,16 +101,20 @@
                         <div class="hearer_icon d-flex">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                             <a href=""><i class="ti-heart"></i></a>
-                            <div class="dropdown cart">
+                            <div class="dropdown ">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-cart-plus"></i>
+                                    <i class="fas fa-cart-plus">   {{ Cart::getTotalQuantity()}} Cart  </i>
                                 </a>
-                                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <div class="single_product">
+                                        <div class="list-group">
+                                            <a href="#" class="list-group-item list-group-item-action ">Active item</a>
+
+                                        </div>
 
                                     </div>
-                                </div> -->
+                                </div>
 
                             </div>
                         </div>
@@ -296,6 +287,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{ asset('client/js/price_rangs.js') }}"></script>
     <!-- custom js -->
     <script src="{{ asset('client/js/custom.js') }}"></script>
+    @livewireScripts
 </body>
 
 </html>
