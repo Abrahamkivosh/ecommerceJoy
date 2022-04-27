@@ -129,20 +129,34 @@
                   <div class="col-6 ">
                     <p class="lead">Actions:</p>
                     <div class="row">
-                        <form action="">
+                        <form action="{{route('order.state',$order->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" hidden name="status" value="pending" >
                             <button class="btn mr-2 btn-sm btn-outline-dark">Pending</button>
                         </form>
-                        <form action="">
+                        <form action="{{route('order.state',$order->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" hidden name="status" value="delivered" >
                             <button class="btn mr-2 btn-sm btn-outline-info">Delivered</button>
                         </form>
-                        <form action="">
+                        <form action="{{route('order.state',$order->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" hidden name="status" value="rejected" >
                             <button class="btn mr-2 btn-sm btn-outline-warning">Reject</button>
                         </form>
-                        <form action="">
-                            <button class="btn mr-2 btn-sm btn-outline-success">Approved</button>
+                        <form action="{{route('order.state',$order->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" hidden name="status" value="approved" >
+                            <button class="btn mr-2 btn-sm btn-outline-success">Approve</button>
                         </form>
-                        <form action="">
-                            <button class="btn mr-2 btn-sm btn-outline-danger">Delete</button>
+                        <form action="{{route('orders.destroy',$order->id)}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Are you sure you want to delete this order?')" class="btn mr-2 btn-sm btn-outline-danger">Delete</button>
                         </form>
                     </div>
 

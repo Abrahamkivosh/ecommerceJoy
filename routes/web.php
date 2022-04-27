@@ -39,7 +39,10 @@ Route::get('adminPage',[AdminController::class,'admin'])->name('admin.index');
 Route::resource('categories', CategoryController::class);
 Route::resource('subCategories', SubCategoryController::class);
 Route::resource('products',ProductController::class);
+
 Route::resource('orders',OrderController::class);
+Route::put('updateorder/{id}',[OrderController::class,'state'])->name('order.state');
+
 Route::resource('images',ImageController::class);
 
 // users

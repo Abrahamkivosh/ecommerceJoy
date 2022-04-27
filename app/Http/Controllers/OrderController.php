@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -61,6 +62,16 @@ class OrderController extends Controller
     {
         //
     }
+    public function state(Request $request,$id){
+
+        $upd=Order::find($id);
+        $upd->status=$request['status'];
+
+        $upd->save();
+
+        return back()->with('success','You have successfuly updated the order status');
+
+    }
 
     /**
      * Update the specified resource in storage.
@@ -85,7 +96,7 @@ class OrderController extends Controller
         $order->delete();
 
         if($order){
-            return back()->with('success','You have successfully deleted the record');
+            return redirect()->route('orders.index')->with('success','You have successfully deleted the record');
         }
         else{
             return back()->with('error','An error occured, please try again or contact the admin!');
