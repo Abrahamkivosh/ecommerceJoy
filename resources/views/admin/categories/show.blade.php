@@ -64,9 +64,6 @@
                                                         type="submit" class="btn btn-sm btn-danger">Delete</button>
                                                 </form>
                                             </div>
-                                            <div class="ml-2">
-                                                <a href="{{route('subCategories.show',$subcategory->id)}}" class="btn btn-sm btn-success" >View</a>
-                                            </div>
                                         </div>
                                     </td>
                                 </tr>
