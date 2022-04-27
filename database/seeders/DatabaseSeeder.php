@@ -15,15 +15,26 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(4)->create();
+
+        if ( User::where('email','josephine@gmail.com')->count() <= 0) {
+            # code...
+            User::create([
+                'name'=>"Josephine Wanjiku",
+                'email'=>"josephine@gmail.com",
+                'password'=>Hash::make("password"),
+                'is_admin'=> 1
+            ]) ;
+
+        }
         $this->call([
-            CategorySeeder::class,
-            SubCategorySeeder::class,
-            ProductSeeder::class,
-            ImageSeeder::class,
-            ReviewSeeder::class,
-            OrderSeeder::class,
-            OrderDetailSeeder::class,
-            PaymentSeeder::class,
+            // CategorySeeder::class,
+            // SubCategorySeeder::class,
+            // ProductSeeder::class,
+            // ImageSeeder::class,
+            // ReviewSeeder::class,
+            // OrderSeeder::class,
+            // OrderDetailSeeder::class,
+            // PaymentSeeder::class,
 
         ]);
     }

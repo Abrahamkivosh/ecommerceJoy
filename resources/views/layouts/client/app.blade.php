@@ -53,7 +53,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg text-white navbar-dark bg-dark">
-                        <a class="navbar-brand" href="{{route('client.index')}}"> <img src="/admin/dist/img/zetu.png" height="50" width="200%" alt="logo"> </a>
+                        <a class="navbar-brand" href="{{route('client.index')}}"> <img src="/admin/dist/img/zetu.png" height="80" width="200%" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -77,12 +77,12 @@
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">
-                            <div class="dropdown ">
-                                <a  style="color: white;"  class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
+                            <div class="dropdown  ">
+                                <a  style="color: white;"  class="dropdown-toggle float-left" href="#" id="navbarDropdown3" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-cart-plus"> {{ Cart::getTotalQuantity() }} Cart </i>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu " style="margin-right: 30%" aria-labelledby="navbarDropdown">
                                     <div class="single_product">
                                         <div class="list-group">
                                             @forelse (Cart::getContent()->toArray() as $item)
