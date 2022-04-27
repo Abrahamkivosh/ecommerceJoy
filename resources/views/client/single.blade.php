@@ -30,8 +30,8 @@
           <div class="product_slider_img">
             <div id="vertical">
                 @foreach ($product->images as $image)
-                <div data-thumb="{{ $image->image }}"  width="200" height="100" >
-                    <img src="{{ $image->image }}" width="200" height="100"  />
+                <div data-thumb="/storage/images/{{ $image->image }}"  width="200" height="100" >
+                    <img src="/storage/images/{{$image->image}}" width="200" height="100"  />
                   </div>
                 @endforeach
 

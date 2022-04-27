@@ -108,7 +108,9 @@
                                                 Customer
                                                 @endif
                                             </option>
-                                            <option value="1">Admin</option>
+                                           @if (Auth::user()->is_admin==1)
+                                           <option value="1">Admin</option>
+                                           @endif
                                             <option value="0">Customer</option>
                                         </select>
                                     </div>

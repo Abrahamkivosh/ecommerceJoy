@@ -41,42 +41,94 @@
                             </thead>
                             <tbody>
                                 @foreach ($orders as $order)
-                                <tr>
-                                    <td>{{$order->user->name}}</td>
-                                    <td>{{$order->shipping_address}}</td>
-                                    <td>{{$order->order_phone}}</td>
-                                    <td>
-                                        @if ($order->status =='pending')
-                                        <span class="badge badge-warning">Pending</span>
-                                        @elseif($order->status =='rejected')
-                                        <span class="badge badge-danger">Rejected</span>
-                                        @elseif ($order->status =='approved')
-                                        <span class="badge badge-success">Approved</span>
-                                        @elseif ($order->status =='delivered')
-                                        <span class="badge badge-info">Delivered</span>
-                                        @endif
-                                     </td>
-                                    <td>{{$order->delivery_date}}</td>
-                                    <td>
-                                        <div class="row">
-                                            <div class="mr-2">
-                                                <a href="{{route('orders.show',$order->id)}}" class="btn btn-sm btn-outline-success" >View</a>
-                                            </div>
-                                            <div class="ml-2">
-                                                <form action="{{route('orders.destroy',$order->id)}}" method="post"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    <button
-                                                        onclick="return confirm('Are you sure you want to delete this record?');"
-                                                        type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                                </form>
-                                            </div>
-
+                              @if (Auth::user()->is_admin==1)
+                              <tr>
+                                <td>{{$order->user->name}}</td>
+                                <td>{{$order->shipping_address}}</td>
+                                <td>{{$order->order_phone}}</td>
+                                <td>
+                                    @if ($order->status =='pending')
+                                    <span class="badge badge-warning">Pending</span>
+                                    @elseif($order->status =='rejected')
+                                    <span class="badge badge-danger">Rejected</span>
+                                    @elseif ($order->status =='approved')
+                                    <span class="badge badge-success">Approved</span>
+                                    @elseif ($order->status =='delivered')
+                                    <span class="badge badge-info">Delivered</span>
+                                    @endif
+                                </td>
+                                <td>{{$order->delivery_date}}</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="mr-2">
+                                            <a href="{{route('orders.show',$order->id)}}"
+                                                class="btn btn-sm btn-outline-success">View</a>
                                         </div>
-                                    </td>
-                                </tr>
+                                        @if (Auth::user()->is_admin==1)
+                                        <div class="ml-2">
+                                            <form action="{{route('orders.destroy',$order->id)}}" method="post"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    onclick="return confirm('Are you sure you want to delete this record?');"
+                                                    type="submit"
+                                                    class="btn btn-sm btn-outline-danger">Delete</button>
+                                            </form>
+                                        </div>
+
+                                        @endif
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                              @elseif (Auth::user()->id==$order->user->id)
+                              <tr>
+                                <td>{{$order->user->name}}</td>
+                                <td>{{$order->shipping_address}}</td>
+                                <td>{{$order->order_phone}}</td>
+                                <td>
+                                    @if ($order->status =='pending')
+                                    <span class="badge badge-warning">Pending</span>
+                                    @elseif($order->status =='rejected')
+                                    <span class="badge badge-danger">Rejected</span>
+                                    @elseif ($order->status =='approved')
+                                    <span class="badge badge-success">Approved</span>
+                                    @elseif ($order->status =='delivered')
+                                    <span class="badge badge-info">Delivered</span>
+                                    @endif
+                                </td>
+                                <td>{{$order->delivery_date}}</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="mr-2">
+                                            <a href="{{route('orders.show',$order->id)}}"
+                                                class="btn btn-sm btn-outline-success">View</a>
+                                        </div>
+                                        @if (Auth::user()->is_admin==1)
+                                        <div class="ml-2">
+                                            <form action="{{route('orders.destroy',$order->id)}}" method="post"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button
+                                                    onclick="return confirm('Are you sure you want to delete this record?');"
+                                                    type="submit"
+                                                    class="btn btn-sm btn-outline-danger">Delete</button>
+                                            </form>
+                                        </div>
+
+                                        @endif
+
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                              @endif
                                 @endforeach
                             </tbody>
                             <tfoot>

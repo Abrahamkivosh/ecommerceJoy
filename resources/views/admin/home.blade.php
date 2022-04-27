@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Odds & End</h1>
+                <h1 class="m-0">Zetu Furniture</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -33,7 +33,11 @@
                     <a href="{{route('orders.index')}}">
                         <div class="info-box-content">
                             <span class="info-box-text">Orders</span>
+                            @if (Auth::user()->is_admin==1)
                             <span class="info-box-number">{{$ordersCount}}</span>
+                            @else
+                            <span class="info-box-number">{{Auth::user()->orders->count()}}</span>
+                            @endif
                         </div>
                     </a>
                     <!-- /.info-box-content -->
@@ -45,10 +49,17 @@
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="info-box">
                     <span class="info-box-icon bg-success"><i class="far fa-user"></i></span>
+                    @if (Auth::user()->is_admin==1)
                     <a href="{{route('orders.index')}}">
                     <div class="info-box-content">
-                        <span class="info-box-text">Users</span>
-                        <span class="info-box-number">{{$usersCount}}</span>
+                      <span class="info-box-text">Users</span>
+                      <span class="info-box-number">{{$usersCount}}</span>
+                      @else
+                      <a href="{{route('user.edit',Auth::user()->id)}}">
+                      <div class="info-box-content">
+                      <span class="info-box-text">User</span>
+                      <span class="info-box-number">1</span>
+                      @endif
                     </div>
                     </a>
                     <!-- /.info-box-content -->
@@ -115,6 +126,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($orders as $order)
+                                    @if (Auth::user()->is_admin==1)
                                     <tr>
                                         <td><a href="#">{{$order->id}}</a></td>
                                         <td>{{$order->shipping_address}}</td>
@@ -130,6 +142,25 @@
                                         </td>
                                         <td>{{$order->delivery_date}}</td>
                                     </tr>
+                                    @elseif (Auth::user()->id == $order->user->id)
+                                    <tr>
+                                        <td><a href="#">{{$order->id}}</a></td>
+                                        <td>{{$order->shipping_address}}</td>
+                                        <td> @if ($order->status =='pending')
+                                            <span class="badge badge-warning">Pending</span>
+                                            @elseif($order->status =='rejected')
+                                            <span class="badge badge-danger">Rejected</span>
+                                            @elseif ($order->status =='approved')
+                                            <span class="badge badge-success">Approved</span>
+                                            @elseif ($order->status =='delivered')
+                                            <span class="badge badge-info">Delivered</span>
+                                            @endif
+                                        </td>
+                                        <td>{{$order->delivery_date}}</td>
+                                    </tr>
+
+                                    @endif
+
                                     @endforeach
                                 </tbody>
                             </table>

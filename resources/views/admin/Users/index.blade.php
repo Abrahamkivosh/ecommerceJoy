@@ -56,7 +56,7 @@
                                     <td>
                                         <div class="row">
                                             <div>
-                                                <a href="{{route('user.edit',$user->id)}}"> <i class="fa fa-eye"
+                                                <a href="{{route('user.edit',$user->id)}}"> <i class="fa fa-pencil"
                                                         aria-hidden="true">Edit</i> </a>
                                     </td>
                     </div>

@@ -51,7 +51,18 @@
                   </div>
                   <!-- /.col -->
                   <div class="col-sm-4 invoice-col">
-                    <b>Order </b><br>
+                    <b>Order Status:
+
+                        @if ($order->status =='pending')
+                        <span class="badge badge-warning">Pending</span>
+                        @elseif($order->status =='rejected')
+                        <span class="badge badge-danger">Rejected</span>
+                        @elseif ($order->status =='approved')
+                        <span class="badge badge-success">Approved</span>
+                        @elseif ($order->status =='delivered')
+                        <span class="badge badge-info">Delivered</span>
+                        @endif
+                    </b><br>
                     <br>
                     <b>Order ID:</b>  {{$order->id}}<br>
                     <b>Delivery Date:</b>  {{$order->delivery_date}}<br>
@@ -114,6 +125,7 @@
                       <!-- /.col -->
 
                   <!-- accepted payments column -->
+                  @if (Auth::user()->is_admin==1)
                   <div class="col-6 ">
                     <p class="lead">Actions:</p>
                     <div class="row">
@@ -135,6 +147,7 @@
                     </div>
 
                   </div>
+                  @endif
                   <!-- /.col -->
 
                 </div>

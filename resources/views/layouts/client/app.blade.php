@@ -53,7 +53,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg text-white navbar-dark bg-dark">
-                        <a class="navbar-brand" href="{{route('client.index')}}"> <img src="/admin/dist/img/odds.PNG" alt="logo"> </a>
+                        <a class="navbar-brand" href="{{route('client.index')}}"> <img src="/admin/dist/img/zetu.png" height="50" width="200%" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -67,34 +67,6 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('client.categories') }}">Categories</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Account
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="{{ route('login') }}"> login</a>
-                                        <a class="dropdown-item" href="{{ route('register') }}"> Register</a>
-                                        <a class="dropdown-item" href="tracking.html">tracking</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">Orders</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Help
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="#"> Help Center</a>
-                                        <a class="dropdown-item" href="#"> Order cancellation</a>
-                                        <a class="dropdown-item" href="#"> Place & Track orders</a>
-                                    </div>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">Login</a>

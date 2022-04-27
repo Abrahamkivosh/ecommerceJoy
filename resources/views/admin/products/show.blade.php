@@ -12,8 +12,11 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{route('products.index')}}">Products</a></li>
-                    <a class="btn btn-sm btn-outline-info ml-2" href=""  data-toggle="modal"
-                    data-target="#modal-default">Add Images</a>
+                   @if (Auth::user()->is_admin==1)
+                   <a class="btn btn-sm btn-outline-info ml-2" href=""  data-toggle="modal"
+                   data-target="#modal-default">Add Images</a>
+
+                   @endif
                 </ol>
             </div>
         </div>
@@ -36,7 +39,7 @@
                         <div class="product-image-thumb active"><img src="/storage/products/{{$product->image}}"
                                 alt="Product Image"></div>
                                 @foreach ($product->images as $image)
-                                <div class="product-image-thumb"><img src="/storage/images/{{$image->image}}" alt="Product Image"></div>
+                                        <div class="product-image-thumb"><img src="/storage/images/{{$image->image}}" alt="Product Image"></div>
                                 @endforeach
 
                     </div>

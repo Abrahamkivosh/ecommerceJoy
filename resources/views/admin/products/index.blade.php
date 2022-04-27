@@ -11,13 +11,15 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active">products</li>
-                    <a href="{{route('products.create')}}" class="btn btn-sm btn-outline-primary ml-2" >Add product</a>
+                    @if (Auth::user()->is_admin==1)
+                    <a href="{{route('products.create')}}" class="btn btn-sm btn-outline-primary ml-2">Add product</a>
+
+                    @endif
                 </ol>
             </div>
         </div>
-    </div><!-- /.container-fluid -->
+    </div>
 </section>
-
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -54,6 +56,7 @@
                                     <td>{{$product->price}}</td>
                                     <td>
                                         <div class="row">
+                                            @if (Auth::user()->is_admin==1)
                                             <div class="mr-2">
                                                 <a class="btn btn-sm btn-outline-info"
                                                     href="{{route('products.edit',$product->id)}}">Edit</a>
@@ -66,11 +69,15 @@
 
                                                     <button
                                                         onclick="return confirm('Are you sure you want to delete this record?');"
-                                                        type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                                        type="submit"
+                                                        class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </form>
                                             </div>
+
+                                            @endif
                                             <div class="ml-2">
-                                                <a href="{{route('products.show',$product->id)}}" class="btn btn-sm btn-outline-success" >View</a>
+                                                <a href="{{route('products.show',$product->id)}}"
+                                                    class="btn btn-sm btn-outline-success">View</a>
                                             </div>
                                         </div>
                                     </td>
