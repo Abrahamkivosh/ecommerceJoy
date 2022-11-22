@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         if ( User::where('email','josephine@gmail.com')->count() <= 0) {
             # code...
             User::create([
-                'name'=>"Josephine Wanjiku",
-                'email'=>"josephine@gmail.com",
-                'phone'=>"0712094999",
+                'name'=>"Super Admin",
+                'email'=>"super@gmail.com",
+                'phone'=>"0701019722",
                 'password'=>Hash::make("password"),
                 'is_admin'=> 1
             ]) ;
