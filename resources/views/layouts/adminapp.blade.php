@@ -53,7 +53,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer" style="margin-left: 45%">
-            <strong>Copyright &copy; {{date('Y')}} <a href="#">Zetu Furniture</a></strong>
+            <strong>Copyright &copy; {{date('Y')}} <a href="#">JKJIJI</a></strong>
         </footer>
 
         <!-- Control Sidebar -->
