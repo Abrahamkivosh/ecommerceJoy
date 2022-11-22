@@ -40,12 +40,14 @@ class PageController extends Controller
     public function product(Product $product)
     {
         # code...
-        return view('client.single',compact(('product')));
+        $categories = Category::latest()->paginate(4);
+        return view('client.single',compact('product','categories'));
     }
     public function cart()
     {
         # code...
-        return view('client.cart') ;
+        $categories = Category::latest()->paginate(4);
+        return view('client.cart',compact('categories')) ;
     }
     public function addToCart(Request $request)
     {
@@ -67,7 +69,8 @@ class PageController extends Controller
     public function checkout()
     {
         # code...
-        return view('client.checkout') ;
+        $categories = Category::latest()->paginate(4);
+        return view('client.checkout',compact('categories')) ;
     }
     public function checkoutPay( Request $request , PaymentMoney $mpesa )
     {
