@@ -28,7 +28,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <form method="POST" class="row" action="{{ route('login') }}">
+                <form method="POST" class="row" action="{{ route('register') }}">
                     @csrf
 
                     <div class="form-group col-md-4 ">
