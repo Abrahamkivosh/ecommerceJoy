@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('title') | Funitures</title>
+    <title>@yield('title') | Ecommerce</title>
 
     <link rel="icon" href="{{ asset('client/img/favicon.png') }}">
     <!-- Bootstrap CSS -->
@@ -53,7 +53,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg text-white navbar-dark bg-dark">
-                        <a class="navbar-brand" href="{{route('client.index')}}"> <img src="/admin/dist/img/zetu.png" height="80" width="200%" alt="logo"> </a>
+                        <a class="navbar-brand" href="{{route('client.index')}}"> <img src="{{asset('/admin/dist/img/logo1.png')}}" height="80" width="200%" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -148,9 +148,9 @@
                     <div class="single_footer_part">
                         <h4>Top Product Categories</h4>
                         <ul class="list-unstyled">
-                            {{-- @foreach ($categories as $category)
+                            @foreach ($categories as $category)
                             <li><a href="">{{$category->name}}</a></li>
-                            @endforeach --}}
+                            @endforeach
                         </ul>
                     </div>
                 </div>

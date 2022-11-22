@@ -45,8 +45,8 @@
                                 @foreach ($category->sub_categories as $subcategory)
                                 <tr>
                                     <td>{{$subcategory->name}}</td>
-                                    <td><img src="/storage/subcategories/{{$category->image}}" height="50" width="25%"
-                                        alt="categories"></td>
+                                    <td><img src="/storage/subcategories/{{$subcategory->image}}" height="50" width="25%"
+                                        alt="{{$subcategory->name}}"></td>
                                     <td>
                                         <div class="row">
                                             <div class="mr-2">
