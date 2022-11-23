@@ -76,8 +76,8 @@ class Money{
             "CallBackURL" =>  "https://lagaster.org",
             "QueueTimeOutURL" => "https://lagaster.org",
 
-            "AccountReference" => "Deposite to Wallet",
-            "TransactionDesc" => "Deposite to Wallet"
+            "AccountReference" => "JK JIJI",
+            "TransactionDesc" => "Jk Jiji"
         ];
 
         try {
