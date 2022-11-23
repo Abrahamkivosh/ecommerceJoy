@@ -12,18 +12,27 @@ class LipaCheckout extends Component
 {
     public $shipping_address ;
     public $phone ;
+    public $name ;
     public $cartItems = [];
     public function mount(){
         $this->cartItems = \Cart::getContent()->toArray();
     }
 
+    protected $rules = [
+        'name' => 'required|string|min:3',
+        'shipping_address' => 'required|string|min:2|max:255',
+        'phone' => 'required|string|min:10|max:10|regex:/^[0-9]+$/',
+        'cartItems' => 'required|array|min:1',
+    ];
+
     public function Lipa(){
+        $this->validate();
 
 
         if ( !Auth::check() ) {
 
-            Session::flash("error","Please Login or create new account") ;
-            return back() ;
+            session()->flash("error","Please Login or create new account") ;
+            return redirect()->to('/client/checkout');
         }
 
 
@@ -56,11 +65,14 @@ class LipaCheckout extends Component
             ) ;
         }
 
-
-            Session::flash("success",$mpesa ['CustomerMessage'] ) ;
+        session()->flash("success","Order Placed Successfully") ;
+        // session()->flash("success",$mpesa ['CustomerMessage'] ) ;
         } catch (\Throwable $th) {
-            Session::flash("error",$th->getMessage()) ;
+            session()->flash("error",$th->getMessage()) ;
         }
+
+        return redirect()->to('/client/checkout');
+        
 
 
     }

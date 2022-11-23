@@ -26,7 +26,8 @@
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="{{ $item['attributes']['image'] }}" width="200" height="100" alt="{{ $item['name'] }}" />
+                      
+                      <img src="/storage/products/{{ $item['attributes']['image'] }}" width="200" height="100" alt="{{ $item['name'] }}" />
                     </div>
                     <div class="media-body">
                       <p>{{ $item['name'] }}</p>

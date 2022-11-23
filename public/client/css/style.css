@@ -131,34 +131,34 @@ input:focus {
 /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
 
 .padding_top {
-    padding-top: 140px;
+    padding-top: 10px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
     .padding_top {
-        padding-top: 100px;
+        padding-top: 10px;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
     .padding_top {
-        padding-top: 70px;
+        padding-top: 10px;
     }
 }
 
 @media (max-width: 576px) {
     /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
     .padding_top {
-        padding-top: 70px;
+        padding-top: 10px;
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
     .padding_top {
-        padding-top: 70px;
+        padding-top: 10px;
     }
 }
 
@@ -5957,6 +5957,13 @@ ul {
 .p_star input:focus+.placeholder {
     display: none;
 }
+.hide_placeholder {
+    display: none;
+}
+.billing-form{
+    background-color: #dee9e8;
+    padding:0.5rem 0rem;
+}
 
 
 /* line 1470, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
@@ -5976,6 +5983,7 @@ ul {
     content: attr(data-placeholder);
     color: #777;
 }
+
 
 
 /* line 1483, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */

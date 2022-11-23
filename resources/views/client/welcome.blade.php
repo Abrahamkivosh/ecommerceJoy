@@ -62,7 +62,7 @@
 
                             <a href="client/categories?category={{ $category->id }}" class="feature_btn">EXPLORE NOW
                                 <i class="fas fa-play"></i></a>
-                            <img src="/storage/products/{{$product->image}}" alt="{{ $category->name }}" width="400"  >
+                            <img src="/storage/products/{{$product->image}}" alt="{{ $category->name }}" width="400" height="200"  >
                         </div>
                     </div>
                 @endforeach
@@ -90,7 +90,7 @@
                     @foreach ($subCategory->products->take(6) as $product)
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
-                                <img src="/storage/products/{{$product->image}}" width="300" height="150" alt="">
+                                <img src="/storage/products/{{$product->image}}" width="300" height="150" alt="{{$product->name}}"">
                                 <div class="single_product_text">
                                     <h4 class="text text-center text-capitalize ">{{ $product->name }}</h4>
                                     <h3 class="text text-center">Ksh {{ $product->price }}</h3>
